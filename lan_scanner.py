@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 from scapy.all import ARP,Ether,srp
+import socket
 
 parser = ArgumentParser(
     prog = 'LAN Scanner',
@@ -30,10 +31,17 @@ result = srp(packet,timeout = 3,verbose = 0)[0]
 clients = []
 
 for sent, recieved in result:
-    clients.append({'ip' : recieved.psrc, 'mac' : recieved.hwsrc})  #for each response, append ip and mac address to the list of clients
+    ip = recieved.psrc
+    mac = recieved.hwsrc
+    try:
+        hostname = socket.gethostbyaddr(ip)[0]
+    except socket.herror:
+        hostname = "N/A"
+    clients.append({'ip' : ip, 'mac' : mac, 'hostname' : hostname})  #for each response, append ip and mac address to the list of clients
 
 print("Available devices on this network :")
-print("IP" + " "*18 + "MAC")
+print(f"{'IP':<16}  {'MAC':<17}   {'Hostname'}")
+print("-"*60)
 
 for client in clients:
-    print("{:16}  {}".format(client['ip'],client['mac']))
+    print(f"{client['ip']:<16} {client['mac']:<17} {client['hostname']}")
