@@ -37,5 +37,5 @@ truman scan -t 192.168.1.0/24
 Trace ICMP packets to a target:
 
 ```bash
-truman trace -t 8.8.8.8
+truman pkt_trace -t 8.8.8.8
 ```
