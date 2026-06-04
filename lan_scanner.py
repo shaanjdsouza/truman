@@ -44,4 +44,4 @@ print(f"{'IP':<16}  {'MAC':<17}   {'Hostname'}")
 print("-"*60)
 
 for client in clients:
-    print(f"{client['ip']:<16} {client['mac']:<17} {client['hostname']}")
+    print(f"{client['ip']:<16} {client['mac']:<17}   {client['hostname']}")
