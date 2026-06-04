@@ -61,14 +61,14 @@ def build_table(elapsed: float,target: str) -> Table:
 
     return table
 
-def main():
+def main(argv=None):
     console = Console()
     console.print(Panel(f"[bold cyan]Monitoring network traffic for {DURATION} seconds...[/bold cyan]\n"
                         f"[dim]Detected IP: {my_ip}[/dim]"))
     
-    parser = argparse.ArgumentParser(prog="Ping Tracker")
+    parser = argparse.ArgumentParser(prog="truman trace", description="Trace ICMP packets to a target")
     parser.add_argument("-t","--target",required=True)
-    args = parser.parse_args()
+    args = parser.parse_args(argv)
 
     target = args.target
     target_ip = socket.gethostbyname(target)
