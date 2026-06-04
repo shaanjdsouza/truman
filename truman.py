@@ -8,7 +8,7 @@ def main(argv=None):
         epilog=(
             "Examples:\n"
             "  truman scan -t 192.168.1.0/24\n"
-            "  truman trace -t 8.8.8.8"
+            "  truman pkt_trace -t 8.8.8.8"
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
@@ -27,7 +27,7 @@ def main(argv=None):
     )
 
     trace_parser = subparsers.add_parser(
-        "trace",
+        "pkt_trace",
         help="Trace ICMP packets to a target",
         description="Ping a target and count sent and received ICMP packets.",
     )
@@ -44,10 +44,10 @@ def main(argv=None):
         from lan_scanner import main as scan_main
 
         scan_main(["-t", args.target])
-    elif args.command == "trace":
-        from packet_sniffer import main as trace_main
+    elif args.command == "pkt_trace":
+        from packet_sniffer import main as pkt_trace_main
 
-        trace_main(["-t", args.target])
+        pkt_trace_main(["-t", args.target])
     else:
         parser.print_help()
 
