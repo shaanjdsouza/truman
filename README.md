@@ -13,7 +13,7 @@ pip install .
 Or install from GitHub:
 
 ```bash
-pip install git+https://github.com/shaanjdsouza/truman.git
+pip install https://github.com/shaanjdsouza/truman.git
 ```
 
 This installs the `truman` command and the required Python packages listed in `requirements.txt`.
